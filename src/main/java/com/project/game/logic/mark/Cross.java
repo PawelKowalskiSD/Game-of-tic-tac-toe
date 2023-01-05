@@ -24,7 +24,7 @@ public class Cross implements Mark {
     public List<NextMark> getPossibleMoves() {
         List<NextMark> nextMarks = new ArrayList<>();
         addNextCross(nextMarks, true);
-        addNextCross(nextMarks, false);
+        //addNextCross(nextMarks, false);
         return nextMarks;
     }
 
@@ -34,6 +34,7 @@ public class Cross implements Mark {
                 nextMarks.add(new NextMark(col, row));
         }
     }
+
 
     @Override
     public String toString() {

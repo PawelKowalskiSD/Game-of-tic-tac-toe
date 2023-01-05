@@ -24,16 +24,17 @@ public class Circle implements Mark {
     public List<NextMark> getPossibleMoves() {
         List<NextMark> nextMarks = new ArrayList<>();
         addNextCircle(nextMarks, true);
-        addNextCircle(nextMarks, false);
+       // addNextCircle(nextMarks, false);
         return nextMarks;
     }
 
     private static void addNextCircle(List<NextMark> nextMarks, boolean canBePlaced) {
-        for (int col = 0; col < 3; col++) {
+        for (int col = 0; col < 3; col++)
             for (int row = 0; row < 3; row++)
                 nextMarks.add(new NextMark(col, row));
-        }
+
     }
+
 
     @Override
     public String toString() {
