@@ -1,8 +1,6 @@
 package com.project.game.ui.text;
 
-import com.project.game.logic.Board;
 import com.project.game.logic.Move;
-import com.project.game.logic.NextMark;
 
 import java.util.Scanner;
 
@@ -14,7 +12,7 @@ public class UserDialogs {
             String s = scanner.nextLine();
             try {
                 int col = Integer.parseInt(s.substring(0,1));
-                int row = Integer.parseInt(s.substring(0,1));
+                int row = Integer.parseInt(s.substring(1,2));
                 if(col > 2 || row > 2)
                     throw new Exception();
                 return new Move(col, row);
