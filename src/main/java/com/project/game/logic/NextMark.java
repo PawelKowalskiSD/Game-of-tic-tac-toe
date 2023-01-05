@@ -1,10 +1,10 @@
 package com.project.game.logic;
 
-public class MarkMove {
+public class NextMark {
     private final int col;
     private final int row;
 
-    public MarkMove(int col, int row) {
+    public NextMark(int col, int row) {
         this.col = col;
         this.row = row;
     }
@@ -15,5 +15,13 @@ public class MarkMove {
 
     public int getRow() {
         return row;
+    }
+
+    @Override
+    public String toString() {
+        return "NextMark{" +
+                "col=" + col +
+                ", row=" + row +
+                '}';
     }
 }

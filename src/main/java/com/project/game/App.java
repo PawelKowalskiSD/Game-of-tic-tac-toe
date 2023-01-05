@@ -13,5 +13,12 @@ public class App {
         System.out.println(board);
         board.setMark(0, 1, new Circle(Symbol.CIRCLE));
         System.out.println(board);
+        board.setMark(2, 2, new Cross(Symbol.CROSS));
+        System.out.println(board);
+
+        Cross cross = new Cross(Symbol.CROSS);
+        System.out.println(cross.getPossibleMoves());
+
     }
+
 }

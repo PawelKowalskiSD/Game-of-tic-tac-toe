@@ -1,7 +1,7 @@
 package com.project.game.logic.mark;
 
 import com.project.game.logic.Mark;
-import com.project.game.logic.MarkMove;
+import com.project.game.logic.NextMark;
 import com.project.game.logic.Symbol;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class None implements Mark {
     }
 
     @Override
-    public List<MarkMove> getPossibleMoves() {
+    public List<NextMark> getPossibleMoves() {
         return null;
     }
 
