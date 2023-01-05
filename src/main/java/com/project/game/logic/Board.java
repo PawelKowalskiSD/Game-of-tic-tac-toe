@@ -20,12 +20,6 @@ public class Board {
         rows.get(row).getCols().set(col, mark);
     }
 
-    public void move(move move) {
-        Mark mark = getMark(move.getSetCol(), move.getSetRow());
-        setMark(move.getSetCol(), move.getSetRow(), mark);
-
-    }
-
     @Override
     public String toString() {
         String s = "";
