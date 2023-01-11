@@ -11,6 +11,13 @@ public class App {
         while (true) {
             Move move = UserDialogs.getNextMove();
             if (board.move(move)) {
+                if(board.isWinner() ||  board.thereAreNoEmptyFields()) {
+                    System.out.println(board);
+                    System.out.println();
+                    break;
+
+                }
+
 
             }
             System.out.println(board);
