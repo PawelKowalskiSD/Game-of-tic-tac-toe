@@ -12,12 +12,20 @@ public class Board {
 
     private Symbol whoStarts = Symbol.CROSS;
     private final List<BoardRow> rows = new ArrayList<>();
-    private Move move;
+    private CharacterSelection characterSelection = CharacterSelection.CROSS;
+    private boolean gameWithComputer;
+
+    public Board(boolean gameWithComputer, CharacterSelection characterSelection) {
+        this();
+        this.characterSelection = characterSelection;
+        this.gameWithComputer = gameWithComputer;
+    }
 
     public Board() {
         for (int row = 0; row < 3; row++)
             rows.add(new BoardRow());
     }
+
 
     public Mark getMark(int col, int row) {
         return rows.get(row).getCols().get(col);
@@ -32,6 +40,7 @@ public class Board {
 
     public boolean move(Move move) {
         boolean result = true;
+        result = result && isTargetOnBoard(move);
         result = result && checkPossibleMove(move);
         result = result && checkSymbol(move);
         if(result) {
@@ -46,6 +55,10 @@ public class Board {
             }
         }
         return result;
+    }
+
+    private boolean isTargetOnBoard(Move move) {
+        return move.getCol() >= 0 && move.getCol() <= 2 && move.getRow() >= 0 && move.getRow() <= 2;
     }
 
     private boolean checkSymbol(Move move) {
@@ -75,7 +88,7 @@ public class Board {
         if(isWinner()) {
             return "Win " + oppositeMove(whoStarts);
         } else if (thereAreNoEmptyFields()) {
-            return "draw";
+            return "draw in the game";
         }
         return "Next move: " + whoStarts;
     }
@@ -120,5 +133,29 @@ public class Board {
             return true;
        }
         return false;
+    }
+
+    public boolean isGameWithComputer() {
+        return gameWithComputer;
+    }
+
+    public Board deepCopy() {
+        Board newBoard = new Board(gameWithComputer, characterSelection);
+        for (int col = 0; col < 3; col++) {
+            for (int row = 0; row < 3; row++) {
+                Mark mark = new Circle(Symbol.CIRCLE);
+                Mark newMark = MarkFactory.createMarkCopy(mark);
+                //               newBoard.setMark(col, row, mark);
+//                if(!(mark instanceof None)) {
+                    newBoard.setMark(col, row, newMark);
+//                }
+            }
+       }
+        newBoard.whoStarts = whoStarts;
+        return newBoard;
+    }
+
+    public CharacterSelection getCharacterSelection() {
+        return characterSelection;
     }
 }
