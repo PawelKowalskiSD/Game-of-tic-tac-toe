@@ -12,10 +12,10 @@ public class App {
         System.out.println(board);
         while (true) {
             Move move = UserDialogs.getNextMove();
-            if(move.isRestart()){
+            if(move.isRestart()) {
 
             } else if (board.move(move)) {
-                if(board.isGameWithComputer()){
+                if(board.isGameWithComputer()) {
                     Move computerMove = AI.getBestMove(board);
                     board.move(computerMove);
                 }
@@ -23,10 +23,7 @@ public class App {
                     System.out.println(board);
                     System.out.println();
                     break;
-
                 }
-
-
             }
             System.out.println(board);
         }

@@ -15,6 +15,7 @@ public class Board {
     private CharacterSelection characterSelection = CharacterSelection.CROSS;
     private boolean gameWithComputer;
 
+
     public Board(boolean gameWithComputer, CharacterSelection characterSelection) {
         this();
         this.characterSelection = characterSelection;
@@ -56,6 +57,7 @@ public class Board {
         }
         return result;
     }
+
 
     private boolean isTargetOnBoard(Move move) {
         return move.getCol() >= 0 && move.getCol() <= 2 && move.getRow() >= 0 && move.getRow() <= 2;
@@ -143,12 +145,11 @@ public class Board {
         Board newBoard = new Board(gameWithComputer, characterSelection);
         for (int col = 0; col < 3; col++) {
             for (int row = 0; row < 3; row++) {
-                Mark mark = new Circle(Symbol.CIRCLE);
-                Mark newMark = MarkFactory.createMarkCopy(mark);
-                //               newBoard.setMark(col, row, mark);
-//                if(!(mark instanceof None)) {
+                Mark mark = getMark(col, row);
+                if((mark instanceof None)) {
+                    Mark newMark = MarkFactory.createMarkCopy(mark);
                     newBoard.setMark(col, row, newMark);
-//                }
+                }
             }
        }
         newBoard.whoStarts = whoStarts;
