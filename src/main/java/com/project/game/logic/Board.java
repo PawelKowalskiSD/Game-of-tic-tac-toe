@@ -19,7 +19,7 @@ public class Board {
 
     public Board() {
         for (int row = 0; row < getBoardSize(); row++)
-            rows.add(new BoardRow());
+            rows.add(new BoardRow(boardSize));
     }
 
     public Board(boolean gameWithComputer, CharacterSelection characterSelection, int boardSize) {

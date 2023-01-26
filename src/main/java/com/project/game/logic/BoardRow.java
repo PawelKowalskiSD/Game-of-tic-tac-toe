@@ -7,11 +7,14 @@ import java.util.List;
 
 public class BoardRow {
 
+    Board board = new Board();
+    int boardSize = board.getBoardSize();
+
     private final List<Mark> cols = new ArrayList<>();
 
 
-    public BoardRow() {
-            for (int col = 0; col < 3; col++)
+    public BoardRow(int boardSize) {
+            for (int col = 0; col < boardSize ; col++)
                 cols.add(new None());
     }
 
@@ -27,7 +30,7 @@ public class BoardRow {
 
     private String getStringBoard() {
         String s = "|";
-        for (int col = 0; col < 3; col++)
+        for (int col = 0; col < boardSize; col++)
             s += cols.get(col) + "|";
         s += "\n";
         return s;
