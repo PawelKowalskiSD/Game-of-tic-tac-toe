@@ -9,9 +9,10 @@ public class BoardRow {
 
     private final List<Mark> cols = new ArrayList<>();
 
+
     public BoardRow() {
-        for (int col = 0; col < 3; col++)
-            cols.add(new None());
+            for (int col = 0; col < 3; col++)
+                cols.add(new None());
     }
 
     public List<Mark> getCols() {
@@ -20,11 +21,15 @@ public class BoardRow {
 
     @Override
     public String toString() {
+           String result = getStringBoard();
+        return result;
+    }
+
+    private String getStringBoard() {
         String s = "|";
         for (int col = 0; col < 3; col++)
             s += cols.get(col) + "|";
         s += "\n";
-
         return s;
     }
 }

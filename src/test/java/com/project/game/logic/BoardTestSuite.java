@@ -32,15 +32,7 @@ public class BoardTestSuite {
         System.out.println("Preparing to execute test #" + testCounter);
     }
 
-//    public static int sumaRekurencja(int n) {
-//        if(n>1) {
-//            return n * sumaRekurencja(n-1);
-//        } else {
-//            return 1;
-//        }
-        public static int fibonacciRekurencja(int n) {
-            return n<2? n : fibonacciRekurencja(n - 1) + fibonacciRekurencja(n - 2);
-        }
+
 
 
     @Test
@@ -121,11 +113,9 @@ public class BoardTestSuite {
         board.move(new Move(0, 2));
 
         //When
-        int result = fibonacciRekurencja(3);
-        System.out.println(result);
         boolean whoWonTheGame = board.isWinner();
 
         //Then
-    //    assertTrue(whoWonTheGame);
+        assertTrue(whoWonTheGame);
     }
 }

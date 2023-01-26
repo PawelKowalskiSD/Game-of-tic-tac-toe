@@ -10,21 +10,23 @@ import java.util.List;
 
 public class Board {
 
-    private Symbol whoStarts = Symbol.CROSS;
+    Symbol whoStarts = Symbol.CROSS;
     private final List<BoardRow> rows = new ArrayList<>();
     private CharacterSelection characterSelection = CharacterSelection.CROSS;
     private boolean gameWithComputer;
+    private int boardSize;
 
 
-    public Board(boolean gameWithComputer, CharacterSelection characterSelection) {
+    public Board() {
+        for (int row = 0; row < getBoardSize(); row++)
+            rows.add(new BoardRow());
+    }
+
+    public Board(boolean gameWithComputer, CharacterSelection characterSelection, int boardSize) {
         this();
         this.characterSelection = characterSelection;
         this.gameWithComputer = gameWithComputer;
-    }
-
-    public Board() {
-        for (int row = 0; row < 3; row++)
-            rows.add(new BoardRow());
+        this.boardSize = boardSize;
     }
 
 
@@ -60,7 +62,7 @@ public class Board {
 
 
     private boolean isTargetOnBoard(Move move) {
-        return move.getCol() >= 0 && move.getCol() <= 2 && move.getRow() >= 0 && move.getRow() <= 2;
+        return move.getCol() >= 0 && move.getCol() <= getBoardSize() && move.getRow() >= 0 && move.getRow() <= getBoardSize();
     }
 
     private boolean checkSymbol(Move move) {
@@ -80,7 +82,7 @@ public class Board {
     @Override
     public String toString() {
         String s = "";
-        for (int row = 0; row < 3; row++)
+        for (int row = 0; row < getBoardSize() ; row++)
             s+= rows.get(row);
         s += gameplay();
         return s;
@@ -142,9 +144,9 @@ public class Board {
     }
 
     public Board deepCopy() {
-        Board newBoard = new Board(gameWithComputer, characterSelection);
-        for (int col = 0; col < 3; col++) {
-            for (int row = 0; row < 3; row++) {
+        Board newBoard = new Board(gameWithComputer, characterSelection, boardSize);
+        for (int col = 0; col < getBoardSize(); col++) {
+            for (int row = 0; row < getBoardSize(); row++) {
                 Mark mark = getMark(col, row);
                 if((mark instanceof None)) {
                     Mark newMark = MarkFactory.createMarkCopy(mark);
@@ -158,5 +160,13 @@ public class Board {
 
     public CharacterSelection getCharacterSelection() {
         return characterSelection;
+    }
+
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    public void setBoardSize(int boardSize) {
+        this.boardSize = boardSize;
     }
 }

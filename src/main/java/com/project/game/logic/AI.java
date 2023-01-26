@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class AI {
-    static Move move;
+    private static Move move;
     public static Move getBestMove(Board board) {
         // 1. zbudowanie listy wszystkich możliwości ruchu komputera
         // 2. Uzupełnie listy ruchów komputera o scoring
@@ -27,11 +27,9 @@ public class AI {
 
             }
         }
-//         move = new Move(randomGenerator.nextInt(2), randomGenerator.nextInt(2));
+
         for (int i = 1; i < allPossibleMoves.size(); i++)
                move = allPossibleMoves.get(randomGenerator.nextInt(i)).getMove();
-
-        System.out.println(move.getCol() + "" + move.getRow());
 
         // 3. posortować listę ruchów komputera wg scoringu
         // 4. zwrócić ruch który ma maksymalnąróźnicę punktów na korzyść komputera
@@ -72,9 +70,24 @@ public class AI {
     }
 
     private static int calculateScoreForMark(Mark mark) {
+        Board board = new Board();
+        // Score board:      2|1|2
+        //                   1|2|1
+        //                   2|1|2
+        // Score move:
+        // jeżeli gracz zaczyna i wybierze corner to graj środek  w innmy przypadku graj według punktacji na planszy
+        // jeżeli zaczny komputer to graj  tak jak jest punkacja na plaszy
+
+        // jelżeli gracz ma 2 znaki w  lini a 3 pole jest puste to bolokuj ruch. 3pkt
+
+        // jeżeli gracz i komputer mają po dwa znaki w jednej lini i 3 pole jest puste w obu przypadkach
+        //  a ruch ma komputer to dostaw 3 znak w lini i wygraj grę 4pkt
+
+        // jeżeli gracz i komputer
+
         Map<String, Integer> markScores = Map.of(
-                "com.project.game.logic.mark.Cross", 1,
-                "com.project.game.logic.mark.Circle", 1
+                "com.project.game.logic.mark.Cross", 0,
+                "com.project.game.logic.mark.Circle", 0
         );
         return markScores.getOrDefault(mark.getClass().getName(), 0);
     }
