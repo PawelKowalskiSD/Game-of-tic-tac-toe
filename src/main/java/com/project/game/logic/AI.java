@@ -70,7 +70,6 @@ public class AI {
     }
 
     private static int calculateScoreForMark(Mark mark) {
-        Board board = new Board();
         // Score board:      2|1|2
         //                   1|2|1
         //                   2|1|2

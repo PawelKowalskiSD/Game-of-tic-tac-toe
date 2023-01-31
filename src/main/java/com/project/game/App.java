@@ -8,7 +8,7 @@ public class App {
         Board board = new Board(false, CharacterSelection.CIRCLE, 10);
         System.out.println(board);
         while (true) {
-            Move move = UserDialogs.getNextMove();
+            Move move = UserDialogs.getNextMove(board);
             if(move.isRestart()) {
 
             } else if (board.move(move)) {

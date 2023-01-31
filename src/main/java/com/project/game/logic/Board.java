@@ -17,16 +17,15 @@ public class Board {
     private int boardSize;
 
 
-    public Board() {
-        for (int row = 0; row < getBoardSize(); row++)
-            rows.add(new BoardRow(boardSize));
-    }
+    public  Board () {
 
+    }
     public Board(boolean gameWithComputer, CharacterSelection characterSelection, int boardSize) {
-        this();
         this.characterSelection = characterSelection;
         this.gameWithComputer = gameWithComputer;
         this.boardSize = boardSize;
+        for (int row = 0; row < getBoardSize(); row++)
+            rows.add(new BoardRow(boardSize));
     }
 
 
@@ -81,10 +80,20 @@ public class Board {
 
     @Override
     public String toString() {
+        int counter = 0;
         String s = "";
-        for (int row = 0; row < getBoardSize() ; row++)
-            s+= rows.get(row);
+        s += counter++;
+        for (int row = 0; row < getBoardSize(); row++) {
+            s += rows.get(row);
+            if(counter != getBoardSize()) {
+                s += counter++ + "";
+            }
+        }
+
         s += gameplay();
+
+
+
         return s;
     }
 
@@ -98,45 +107,122 @@ public class Board {
     }
 
     public boolean isWinner() {
-            for (int col = 0; col < 3; col++) {
+        // jeżeli tablica jest 3x3 to wywałaj kod poniżej
+        if(boardSize <= 3) {
+            for (int col = 0; col < getBoardSize(); col++) {
                 if (getMark(col, 0).getSymbol() == getMark(col, 1).getSymbol() &&
-                    getMark(col, 1).getSymbol() == getMark(col, 2).getSymbol() &&
-                    getMark(col, 0).getSymbol() != Symbol.NONE) {
+                        getMark(col, 1).getSymbol() == getMark(col, 2).getSymbol() &&
+                        getMark(col, 0).getSymbol() != Symbol.NONE) {
                     return true;
                 }
             }
-            for (int row = 0; row < 3; row++) {
+            for (int row = 0; row < getBoardSize(); row++) {
                 if (getMark(0, row).getSymbol() == getMark(1, row).getSymbol() &&
-                    getMark(1, row).getSymbol() == getMark(2, row).getSymbol() &&
-                    getMark(0, row).getSymbol() != Symbol.NONE) {
+                        getMark(1, row).getSymbol() == getMark(2, row).getSymbol() &&
+                        getMark(0, row).getSymbol() != Symbol.NONE) {
                     return true;
                 }
             }
-            if (getMark(0,0).getSymbol() == getMark(1,1).getSymbol() &&
-                getMark(0,0).getSymbol() == getMark(2,2).getSymbol() &&
-                getMark(0,0).getSymbol() != Symbol.NONE) {
+            if (getMark(0, 0).getSymbol() == getMark(1, 1).getSymbol() &&
+                    getMark(0, 0).getSymbol() == getMark(2, 2).getSymbol() &&
+                    getMark(0, 0).getSymbol() != Symbol.NONE) {
                 return true;
             }
-            if (getMark(0,2).getSymbol() == getMark(1,1).getSymbol() &&
-                getMark(0,2).getSymbol() == getMark(2,0).getSymbol() &&
-                getMark(0,2).getSymbol() != Symbol.NONE) {
+            if (getMark(0, 2).getSymbol() == getMark(1, 1).getSymbol() &&
+                    getMark(0, 2).getSymbol() == getMark(2, 0).getSymbol() &&
+                    getMark(0, 2).getSymbol() != Symbol.NONE) {
                 return true;
             }
+        } else {
+            for (int col = 0; col < getBoardSize(); col++) {
+                    if (getMark(col, 0).getSymbol() == getMark(col, 1).getSymbol() &&
+                        getMark(col, 1).getSymbol() == getMark(col, 2).getSymbol() &&
+                        getMark(col, 2).getSymbol() == getMark(col, 3).getSymbol() &&
+                        getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
+                        getMark(col, 0).getSymbol() != Symbol.NONE) {
+                        return true;
+
+                    } else if (getMark(col, 1).getSymbol() == getMark(col, 2).getSymbol() &&
+                            getMark(col, 2).getSymbol() == getMark(col, 3).getSymbol() &&
+                            getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
+                            getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
+                            getMark(col, 1).getSymbol() != Symbol.NONE) {
+                            return true;
+                    }  else if (getMark(col, 2).getSymbol() == getMark(col, 3).getSymbol() &&
+                            getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
+                            getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
+                            getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
+                            getMark(col, 2).getSymbol() != Symbol.NONE) {
+                        return true;
+                    } else if (getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
+                            getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
+                            getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
+                            getMark(col, 6).getSymbol() == getMark(col, 7).getSymbol() &&
+                            getMark(col, 3).getSymbol() != Symbol.NONE) {
+                        return true;
+                    }  else if (getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
+                            getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
+                            getMark(col, 6).getSymbol() == getMark(col, 7).getSymbol() &&
+                            getMark(col, 7).getSymbol() == getMark(col, 8).getSymbol() &&
+                            getMark(col, 4).getSymbol() != Symbol.NONE) {
+                        return true;
+                    }  else if (getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
+                            getMark(col, 6).getSymbol() == getMark(col, 7).getSymbol() &&
+                            getMark(col, 7).getSymbol() == getMark(col, 8).getSymbol() &&
+                            getMark(col, 8).getSymbol() == getMark(col, 9).getSymbol() &&
+                            getMark(col, 5).getSymbol() != Symbol.NONE) {
+                        return true;
+                    }
+
+            }
+            for (int row = 0; row < getBoardSize(); row++) {
+                for(int col = 0; col < getBoardSize(); col++) {
+                    if (getMark(col, row).getSymbol() == getMark(col + 1, row).getSymbol() &&
+                        getMark(col + 1, row).getSymbol() == getMark(col + 2, row).getSymbol() &&
+                        getMark(col + 2, row).getSymbol() == getMark(col + 3, row).getSymbol() &&
+                        getMark(col + 3, row).getSymbol() == getMark(col + 4, row).getSymbol() &&
+                        getMark(col, row).getSymbol() != Symbol.NONE) {
+                    return true;
+                    }
+                }
+            }
+//            for (int col = 0; col < getBoardSize(); col++) {
+//                for (int row = 0; row < getBoardSize(); row++) {
+//                    if (getMark(col, row).getSymbol() == getMark(col + 1, row + 1).getSymbol() &&
+//                            getMark(col + 1, row + 1).getSymbol() == getMark(col + 2, row + 2).getSymbol() &&
+//                            getMark(col + 2, row + 2).getSymbol() == getMark(col + 3, row + 3).getSymbol() &&
+//                            getMark(col + 3, row + 3).getSymbol() == getMark(col + 4, row + 4).getSymbol() &&
+//                            getMark(col, row).getSymbol() != Symbol.NONE) {
+//                        return true;
+//                    }
+//                }
+//            }
+//            for (int row = 0; row < getBoardSize(); row++) {
+//                for (int col = 0; col < getBoardSize(); col++) {
+//                    if (getMark(col, row).getSymbol() == getMark(col - 1, row + 1).getSymbol() &&
+//                            getMark(col - 1, row + 1).getSymbol() == getMark(col - 2, row + 2).getSymbol() &&
+//                            getMark(col - 2, row + 2).getSymbol() == getMark(col - 3, row + 3).getSymbol() &&
+//                            getMark(col - 3, row + 3).getSymbol() == getMark(col - 4, row + 4).getSymbol() &&
+//                            getMark(col, row).getSymbol() != Symbol.NONE) {
+//                        return true;
+//                    }
+//                }
+//            }
+
+        }
+            // w innym przypadku wywołaj : ( tutaj trzeba napisać równanie tak żeby 5 symboli obok siebie dało wygraną
+            // plansza 10x10
             return false;
     }
 
     public boolean thereAreNoEmptyFields() {
-        if (!(getMark(0,1).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(0,2).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(1,0).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(1,1).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(1,2).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(2,0).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(2,1).getSymbol().equals(Symbol.NONE)) &&
-            !(getMark(2,2).getSymbol().equals(Symbol.NONE))) {
-            return true;
+        for (int col = 0; col < getBoardSize(); col++) {
+            for(int row = 0; row < getBoardSize(); row++) {
+                if (getMark(col, row).getSymbol().equals(Symbol.NONE))
+                    return false;
+            }
        }
-        return false;
+        return true;
     }
 
     public boolean isGameWithComputer() {

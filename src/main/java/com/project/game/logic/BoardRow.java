@@ -7,8 +7,7 @@ import java.util.List;
 
 public class BoardRow {
 
-    Board board = new Board();
-    int boardSize = board.getBoardSize();
+    int boardSize;
 
     private final List<Mark> cols = new ArrayList<>();
 
@@ -24,13 +23,8 @@ public class BoardRow {
 
     @Override
     public String toString() {
-           String result = getStringBoard();
-        return result;
-    }
-
-    private String getStringBoard() {
         String s = "|";
-        for (int col = 0; col < boardSize; col++)
+        for (int col = 0; col < cols.size(); col++)
             s += cols.get(col) + "|";
         s += "\n";
         return s;
