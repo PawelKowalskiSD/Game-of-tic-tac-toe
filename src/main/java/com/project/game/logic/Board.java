@@ -135,84 +135,88 @@ public class Board {
             }
         } else {
             for (int col = 0; col < getBoardSize(); col++) {
-                    if (getMark(col, 0).getSymbol() == getMark(col, 1).getSymbol() &&
-                        getMark(col, 1).getSymbol() == getMark(col, 2).getSymbol() &&
-                        getMark(col, 2).getSymbol() == getMark(col, 3).getSymbol() &&
-                        getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
-                        getMark(col, 0).getSymbol() != Symbol.NONE) {
-                        return true;
-
-                    } else if (getMark(col, 1).getSymbol() == getMark(col, 2).getSymbol() &&
-                            getMark(col, 2).getSymbol() == getMark(col, 3).getSymbol() &&
-                            getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
-                            getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
-                            getMark(col, 1).getSymbol() != Symbol.NONE) {
-                            return true;
-                    }  else if (getMark(col, 2).getSymbol() == getMark(col, 3).getSymbol() &&
-                            getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
-                            getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
-                            getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
-                            getMark(col, 2).getSymbol() != Symbol.NONE) {
-                        return true;
-                    } else if (getMark(col, 3).getSymbol() == getMark(col, 4).getSymbol() &&
-                            getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
-                            getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
-                            getMark(col, 6).getSymbol() == getMark(col, 7).getSymbol() &&
-                            getMark(col, 3).getSymbol() != Symbol.NONE) {
-                        return true;
-                    }  else if (getMark(col, 4).getSymbol() == getMark(col, 5).getSymbol() &&
-                            getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
-                            getMark(col, 6).getSymbol() == getMark(col, 7).getSymbol() &&
-                            getMark(col, 7).getSymbol() == getMark(col, 8).getSymbol() &&
-                            getMark(col, 4).getSymbol() != Symbol.NONE) {
-                        return true;
-                    }  else if (getMark(col, 5).getSymbol() == getMark(col, 6).getSymbol() &&
-                            getMark(col, 6).getSymbol() == getMark(col, 7).getSymbol() &&
-                            getMark(col, 7).getSymbol() == getMark(col, 8).getSymbol() &&
-                            getMark(col, 8).getSymbol() == getMark(col, 9).getSymbol() &&
-                            getMark(col, 5).getSymbol() != Symbol.NONE) {
-                        return true;
-                    }
-
-            }
-            for (int row = 0; row < getBoardSize(); row++) {
-                for(int col = 0; col < getBoardSize(); col++) {
-                    if (getMark(col, row).getSymbol() == getMark(col + 1, row).getSymbol() &&
-                        getMark(col + 1, row).getSymbol() == getMark(col + 2, row).getSymbol() &&
-                        getMark(col + 2, row).getSymbol() == getMark(col + 3, row).getSymbol() &&
-                        getMark(col + 3, row).getSymbol() == getMark(col + 4, row).getSymbol() &&
-                        getMark(col, row).getSymbol() != Symbol.NONE) {
-                    return true;
+                for (int row = 0; row < getBoardSize(); row++) {
+                    if(getMark(col, row).getSymbol() != Symbol.NONE) {
+                        if (isWinRightDirection(col, row)) return true;
+                        if (isWinRightBottomDirection(col, row)) return true;
+                        if (isWinBottomDirection(col, row)) return true;
+                        if (isWinBottomLeftDirection(col, row)) return true;
+                        if (isWinLeftDirection(col, row)) return true;
+                        if (isWinUpwardLeftDirection(col, row)) return true;
+                        if (isWinUpwardDirection(col, row)) return true;
+                        if (isWinUpwardRightDirection(col, row)) return true;
                     }
                 }
             }
-//            for (int col = 0; col < getBoardSize(); col++) {
-//                for (int row = 0; row < getBoardSize(); row++) {
-//                    if (getMark(col, row).getSymbol() == getMark(col + 1, row + 1).getSymbol() &&
-//                            getMark(col + 1, row + 1).getSymbol() == getMark(col + 2, row + 2).getSymbol() &&
-//                            getMark(col + 2, row + 2).getSymbol() == getMark(col + 3, row + 3).getSymbol() &&
-//                            getMark(col + 3, row + 3).getSymbol() == getMark(col + 4, row + 4).getSymbol() &&
-//                            getMark(col, row).getSymbol() != Symbol.NONE) {
-//                        return true;
-//                    }
-//                }
-//            }
-//            for (int row = 0; row < getBoardSize(); row++) {
-//                for (int col = 0; col < getBoardSize(); col++) {
-//                    if (getMark(col, row).getSymbol() == getMark(col - 1, row + 1).getSymbol() &&
-//                            getMark(col - 1, row + 1).getSymbol() == getMark(col - 2, row + 2).getSymbol() &&
-//                            getMark(col - 2, row + 2).getSymbol() == getMark(col - 3, row + 3).getSymbol() &&
-//                            getMark(col - 3, row + 3).getSymbol() == getMark(col - 4, row + 4).getSymbol() &&
-//                            getMark(col, row).getSymbol() != Symbol.NONE) {
-//                        return true;
-//                    }
-//                }
-//            }
 
         }
             // w innym przypadku wywołaj : ( tutaj trzeba napisać równanie tak żeby 5 symboli obok siebie dało wygraną
             // plansza 10x10
             return false;
+    }
+
+    private boolean isWinUpwardRightDirection(int col, int row) {
+        return false;
+    }
+
+    private boolean isWinUpwardDirection(int col, int row) {
+        return false;
+    }
+
+    private boolean isWinUpwardLeftDirection(int col, int row) {
+        return false;
+    }
+
+    private boolean isWinLeftDirection(int col, int row) {
+        int repetitionCounter = -1;
+        Symbol symbol = getMark(col, row).getSymbol();
+        for (int i = col - 1; i < col - 5 ; i--) {
+            if (i <= getBoardSize()) {
+                break;
+            }
+            if (getMark(i, row).getSymbol() == symbol) {
+                repetitionCounter--;
+            } else {
+                break;
+            }
+
+        }
+        if (repetitionCounter == -5) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isWinBottomLeftDirection(int col, int row) {
+        return false;
+    }
+
+
+    private boolean isWinBottomDirection(int col, int row) {
+        return false;
+    }
+
+    private boolean isWinRightBottomDirection(int col, int row) {
+        return false;
+    }
+
+    private boolean isWinRightDirection(int col, int row) {
+        int repetitionCounter = 1;
+        Symbol symbol = getMark(col, row).getSymbol();
+        for (int i = col + 1; i < col + 5 ; i++) {
+            if (i >= getBoardSize()) {
+                break;
+            }
+            if (getMark(i , row).getSymbol() == symbol) {
+                repetitionCounter++;
+            } else {
+                break;
+            }
+        }
+        if (repetitionCounter == 5) {
+            return true;
+        }
+        return false;
     }
 
     public boolean thereAreNoEmptyFields() {
