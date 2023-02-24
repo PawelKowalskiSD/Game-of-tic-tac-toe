@@ -36,7 +36,6 @@ public class Cross implements Mark {
         }
     }
 
-
     @Override
     public String toString() {
         return "X";

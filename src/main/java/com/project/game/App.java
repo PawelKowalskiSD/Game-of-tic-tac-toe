@@ -12,11 +12,11 @@ public class App {
             if(move.isRestart()) {
 
             } else if (board.move(move)) {
-                if(board.isGameWithComputer() && !board.isWinner() && !board.thereAreNoEmptyFields()) {
+                if(board.isGameWithComputer() && !board.isWinner(board) && !board.thereAreNoEmptyFields()) {
                     Move computerMove = AI.getBestMove(board);
                     board.move(computerMove);
                 }
-                if(board.isWinner() ||  board.thereAreNoEmptyFields()) {
+                if(board.isWinner(board) ||  board.thereAreNoEmptyFields()) {
                     System.out.println(board);
                     System.out.println();
                     break;

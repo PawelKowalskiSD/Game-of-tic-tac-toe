@@ -7,10 +7,7 @@ import java.util.List;
 
 public class BoardRow {
 
-    int boardSize;
-
     private final List<Mark> cols = new ArrayList<>();
-
 
     public BoardRow(int boardSize) {
             for (int col = 0; col < boardSize ; col++)
