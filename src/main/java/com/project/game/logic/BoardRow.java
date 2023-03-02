@@ -10,8 +10,8 @@ public class BoardRow {
     private final List<Mark> cols = new ArrayList<>();
 
     public BoardRow(int boardSize) {
-            for (int col = 0; col < boardSize ; col++)
-                cols.add(new None());
+        for (int col = 0; col < boardSize; col++)
+            cols.add(new None());
     }
 
     public List<Mark> getCols() {

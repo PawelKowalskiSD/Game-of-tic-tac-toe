@@ -3,8 +3,8 @@ package com.project.game.logic;
 public class Move {
 
     private final int col;
-    private final  int row;
-    private  final boolean isRestart;
+    private final int row;
+    private final boolean isRestart;
 
     public Move(int col, int row, boolean isRestart) {
         this.col = col;

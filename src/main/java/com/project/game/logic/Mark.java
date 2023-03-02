@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface Mark {
     Symbol getSymbol();
+
     List<NextMark> getPossibleMoves();
 }
