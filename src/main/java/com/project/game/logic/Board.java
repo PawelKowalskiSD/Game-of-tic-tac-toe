@@ -124,41 +124,29 @@ public class Board {
         int symbolCircleCounter = 0;
 
         if (getBoardSize() > 4) {
-            for (int i = 0; i < 5; i++) {
-                if (isOnTheBoard(board, col, row)) {
-                    Symbol symbol = getMark(col, row).getSymbol();
-                    if (symbol == Symbol.CROSS) {
-                        symbolCrossCounter++;
-                    } else if (symbol == Symbol.CIRCLE) {
-                        symbolCircleCounter++;
-                    }
-                }
-                col += deltaCol;
-                row += deltaRow;
-            }
-            if (symbolCrossCounter == 5) {
-                return true;
-            } else {
-                return symbolCircleCounter == 5;
-            }
+            return checkWin(5, board, col, row, symbolCrossCounter, symbolCircleCounter, deltaCol, deltaRow);
         } else {
-            for (int i = 0; i < 3; i++) {
-                if (isOnTheBoard(board, col, row)) {
-                    Symbol symbol = getMark(col, row).getSymbol();
-                    if (symbol == Symbol.CROSS) {
-                        symbolCrossCounter++;
-                    } else if (symbol == Symbol.CIRCLE) {
-                        symbolCircleCounter++;
-                    }
+            return checkWin(3, board, col, row, symbolCrossCounter, symbolCircleCounter, deltaCol, deltaRow);
+        }
+    }
+
+    private boolean checkWin(int size, Board board, int col, int row, int symbolCrossCounter, int symbolCircleCounter, int deltaCol, int deltaRow) {
+        for (int i = 0; i < size; i++) {
+            if (isOnTheBoard(board, col, row)) {
+                Symbol symbol = getMark(col, row).getSymbol();
+                if (symbol == Symbol.CROSS) {
+                    symbolCrossCounter++;
+                } else if (symbol == Symbol.CIRCLE) {
+                    symbolCircleCounter++;
                 }
-                col += deltaCol;
-                row += deltaRow;
             }
-            if (symbolCrossCounter == 3) {
-                return true;
-            } else {
-                return symbolCircleCounter == 3;
-            }
+            col += deltaCol;
+            row += deltaRow;
+        }
+        if (symbolCrossCounter == size) {
+            return true;
+        } else {
+            return symbolCircleCounter == size;
         }
     }
 

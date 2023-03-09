@@ -5,7 +5,7 @@ import com.project.game.ui.text.UserDialogs;
 
 public class App {
     public static void main(String[] args) {
-        Board board = new Board(true, CharacterSelection.CIRCLE, 5);
+        Board board = new Board(true, CharacterSelection.CIRCLE, 3);
         System.out.println(board);
         while (true) {
             Move move = UserDialogs.getNextMove(board);
